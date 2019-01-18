@@ -3,7 +3,7 @@
 <asp:Content ID="Content2"  ContentPlaceHolderID="ContentForm" runat="server">
     <br />
     <br />
-    <table class="tableACCESSTexas">
+    <table class="table1">
         <tr>
             <td class="left">
                 <asp:Label ID="InstructionLabel1" runat="server" Font-Size="Medium"></asp:Label>
