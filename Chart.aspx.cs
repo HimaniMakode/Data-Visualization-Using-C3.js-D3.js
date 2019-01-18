@@ -4,10 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CTMSUtilities;
-using ACCESSTexas.ACCESSTexas.Datasets.DemographicsChartsDatasetTableAdapters;
+using table1.table1.Datasets.DemographicsChartsDatasetTableAdapters;
 
-namespace ACCESSTexas.ACCESSTexas.Home
+namespace table1.table1.Home
 {
     public partial class GetDemographicsChartData : System.Web.UI.Page
     {
@@ -23,13 +22,13 @@ namespace ACCESSTexas.ACCESSTexas.Home
             Response.ContentType = "application/json";
             Response.BufferOutput = true;
 
-            string userRoles = ((ACCESSTexas.NestedACCESSTexas)Page.Master).GetUserRoles();
+            string userRoles = ((table1.Nestedtable1)Page.Master).GetUserRoles();
 
             if (chartType == "1")
             {
-                CountPerStudySiteTableAdapter CountPerStudySiteTableAdapter = new CountPerStudySiteTableAdapter();
-                Datasets.DemographicsChartsDataset.CountPerStudySiteDataTable table = CountPerStudySiteTableAdapter.GetData(userRoles);
-                foreach (Datasets.DemographicsChartsDataset.CountPerStudySiteRow row in table.Rows)
+                CountPerStudyTableAdapter CountPerStudyTableAdapter = new CountPerStudyTableAdapter();
+                Datasets.DemographicsChartsDataset.CountPerStudyDataTable table = CountPerStudyTableAdapter.GetData(userRoles);
+                foreach (Datasets.DemographicsChartsDataset.CountPerStudyRow row in table.Rows)
                 {
                     string item = "{\"TCH\":\"" + row.TCHCount.ToString() + "\",\"Total Enrollment\":\"" + row.TotalEnrollment.ToString() + "\",\"EnrollmentYearMonth\":\"" + (row.IsEnrollmentYearMonthNull() ? "null" : row.EnrollmentYearMonth) + "\"}";
                     returnValue = returnValue + "," + item;
@@ -47,7 +46,7 @@ namespace ACCESSTexas.ACCESSTexas.Home
             }
             if (chartType == "2")
             {
-                                   CountGenderTableAdapter CountGenderTableAdapter = new CountGenderTableAdapter();
+                    CountGenderTableAdapter CountGenderTableAdapter = new CountGenderTableAdapter();
                     Datasets.DemographicsChartsDataset.CountGenderDataTable table = CountGenderTableAdapter.GetData(userRoles);
                     foreach (Datasets.DemographicsChartsDataset.CountGenderRow row in table.Rows)
                     {
@@ -57,11 +56,11 @@ namespace ACCESSTexas.ACCESSTexas.Home
             }
             if (chartType == "3")
             {
-                CountStudySiteTableAdapter CountStudySiteTableAdapter = new CountStudySiteTableAdapter();
-                Datasets.DemographicsChartsDataset.CountStudySiteDataTable table = CountStudySiteTableAdapter.GetData(userRoles);
-                foreach (Datasets.DemographicsChartsDataset.CountStudySiteRow row in table.Rows)
+                CountStudyTableAdapter CountStudyTableAdapter = new CountStudyTableAdapter();
+                Datasets.DemographicsChartsDataset.CountStudyDataTable table = CountStudyTableAdapter.GetData(userRoles);
+                foreach (Datasets.DemographicsChartsDataset.CountStudyRow row in table.Rows)
                 {
-                    string item = "{\"Study Site\":\"" + row.StudySiteText + "\",\"Count\":\"" + row.COECount.ToString() + "\"}";
+                    string item = "{\"Study Site\":\"" + row.StudyText + "\",\"Count\":\"" + row.COECount.ToString() + "\"}";
                     returnValue = returnValue + "," + item;
                 }
             }
